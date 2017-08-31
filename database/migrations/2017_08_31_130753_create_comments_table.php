@@ -15,7 +15,7 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('post_id')->index()->default(0);
+            $table->unsignedInteger('post_id')->index('idx_post_id')->default(0);
             $table->unsignedInteger('author_id')->default(0);
             $table->unsignedInteger('owner_id')->default(0);
             $table->unsignedInteger('parent_id')->default(0);
@@ -25,7 +25,7 @@ class CreateCommentsTable extends Migration
             $table->string('ip', 64);
             $table->string('agent', 200);
             $table->text('body');
-            $table->enum('status', ['approved', 'waiting'])->default('waiting');
+            $table->enum('status', ['approved', 'waiting'])->default('waiting')->index('idx_status');
             $table->timestamps();
         });
     }

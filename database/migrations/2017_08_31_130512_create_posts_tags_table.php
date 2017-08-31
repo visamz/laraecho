@@ -17,7 +17,7 @@ class CreatePostsTagsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('post_id');
             $table->unsignedInteger('tag_id');
-            $table->primary(['post_id', 'tag_id']);
+            $table->index(['post_id', 'tag_id'], 'idx_post_tag');
         });
     }
 
